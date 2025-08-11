@@ -5,8 +5,8 @@
     "optional": [],
     "js": "dist/index.js",
     "css": "",
-    "author": "Cohee1207",
+    "author": "Red-dish",
     "version": "1.0.0",
-    "homePage": "https://github.com/SillyTavern/Extension-EmojiPicker",
+    "homePage": "https://github.com/Playing-with-ST/SillyTavern-ModdedEmojiPicker",
     "auto_update": true
 }
