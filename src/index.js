@@ -121,7 +121,7 @@ const pickerOptions = {
     skinTonePosition: 'search',
 };
 const picker = new Picker(pickerOptions);
-const buttonContainer = document.getElementById('rightSendForm');
+const buttonContainer = document.getElementById('leftSendForm');
 const addEmojiButton = document.createElement('div');
 addEmojiButton.id = 'addEmojiButton';
 addEmojiButton.title = 'Insert emoji';
