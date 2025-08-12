@@ -161,3 +161,4 @@ document.body.addEventListener('keyup', (event) => {
         popper.update();
     }
 });
+addEmojiButton.style.order = '0';
