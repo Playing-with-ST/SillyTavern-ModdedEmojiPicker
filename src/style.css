@@ -1,7 +1,16 @@
-em-emoji-picker {
-    z-index: 1000;
-}
-
+em-emoji-picker {  
+    z-index: 1000;  
+}  
+  
 #addEmojiButton {  
-    order: 0 !important;  
+    order: -1 !important;  
+    flex-shrink: 0;  
+}  
+  
+/* Ensure proper mobile behavior */  
+@media screen and (max-width: 1000px) {  
+    #addEmojiButton {  
+        width: 1.15em !important;  
+        height: 1.15em !important;  
+    }  
 }
