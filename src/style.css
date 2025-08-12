@@ -1,6 +1,7 @@
 em-emoji-picker {
     z-index: 1000;
 }
+
 #addEmojiButton {  
-    order: 0;  
+    order: 0 !important;  
 }
