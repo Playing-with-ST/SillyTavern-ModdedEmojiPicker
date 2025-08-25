@@ -122,47 +122,51 @@ const pickerOptions = {
 };
 const picker = new Picker(pickerOptions);
 
-document.addEventListener('DOMContentLoaded', () => {
-    const buttonContainer = document.getElementById('leftSendForm');
-const addEmojiButton = document.createElement('div');
-addEmojiButton.id = 'addEmojiButton';
-addEmojiButton.title = 'Insert emoji';
-addEmojiButton.classList.add('fa-solid', 'fa-icons', 'interactable');
-addEmojiButton.tabIndex = 0;
-const popper = createPopper(addEmojiButton, picker, {
-    placement: 'top-end',
-    modifiers: [],
-});
-picker.classList.add('displayNone');
-buttonContainer.insertAdjacentElement('afterbegin', addEmojiButton);
-});
+document.addEventListener('DOMContentLoaded', () => {  
+        const buttonContainer = document.getElementById('leftSendForm');  
+          
+        if (!buttonContainer) {  
+            console.error('leftSendForm not found - UI may not be ready');  
+            return;  
+        }  
+          
+        // Your existing button creation code here  
+        const addEmojiButton = document.createElement('div');  
+        addEmojiButton.id = 'addEmojiButton';  
+        addEmojiButton.title = 'Insert emoji';  
+        addEmojiButton.classList.add('fa-solid', 'fa-icons', 'interactable');  
+        addEmojiButton.tabIndex = 0;  
+          
+        buttonContainer.insertAdjacentElement('afterbegin', addEmojiButton);  
 
-buttonContainer.addEventListener('click', () => {
-    picker.classList.toggle('displayNone');
-    popper.update();
 
-    if (!picker.classList.contains('displayNone')) {
-        const search = picker.shadowRoot?.querySelector('input[type="search"]');
-        if (search instanceof HTMLInputElement) {
-            search.value = '';
-            search.dispatchEvent(new Event('input'));
-            search.focus();
+    buttonContainer.addEventListener('click', () => {
+        picker.classList.toggle('displayNone');
+        popper.update();
+
+        if (!picker.classList.contains('displayNone')) {
+            const search = picker.shadowRoot?.querySelector('input[type="search"]');
+            if (search instanceof HTMLInputElement) {
+                search.value = '';
+                search.dispatchEvent(new Event('input'));
+                search.focus();
+            }
+        } else {
+            textarea.focus();
         }
-    } else {
-        textarea.focus();
-    }
+    });
+    document.body.appendChild(picker);
+    document.body.addEventListener('click', (event) => {
+        if (!picker.classList.contains('displayNone') && !picker.contains(event.target) && !addEmojiButton.contains(event.target)) {
+            picker.classList.add('displayNone');
+            popper.update();
+        }
+    });
+    document.body.addEventListener('keyup', (event) => {
+        if (!picker.classList.contains('displayNone') && event.key === 'Escape') {
+            picker.classList.add('displayNone');
+            popper.update();
+        }
+    });
+    addEmojiButton.style.order = '0';
 });
-document.body.appendChild(picker);
-document.body.addEventListener('click', (event) => {
-    if (!picker.classList.contains('displayNone') && !picker.contains(event.target) && !addEmojiButton.contains(event.target)) {
-        picker.classList.add('displayNone');
-        popper.update();
-    }
-});
-document.body.addEventListener('keyup', (event) => {
-    if (!picker.classList.contains('displayNone') && event.key === 'Escape') {
-        picker.classList.add('displayNone');
-        popper.update();
-    }
-});
-addEmojiButton.style.order = '0';
