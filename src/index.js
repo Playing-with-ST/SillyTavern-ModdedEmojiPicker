@@ -121,7 +121,9 @@ const pickerOptions = {
     skinTonePosition: 'search',
 };
 const picker = new Picker(pickerOptions);
-const buttonContainer = document.getElementById('leftSendForm');
+
+document.addEventListener('DOMContentLoaded', () => {
+    const buttonContainer = document.getElementById('leftSendForm');
 const addEmojiButton = document.createElement('div');
 addEmojiButton.id = 'addEmojiButton';
 addEmojiButton.title = 'Insert emoji';
@@ -133,6 +135,8 @@ const popper = createPopper(addEmojiButton, picker, {
 });
 picker.classList.add('displayNone');
 buttonContainer.insertAdjacentElement('afterbegin', addEmojiButton);
+});
+
 buttonContainer.addEventListener('click', () => {
     picker.classList.toggle('displayNone');
     popper.update();
